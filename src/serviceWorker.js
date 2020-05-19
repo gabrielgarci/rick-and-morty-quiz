@@ -18,7 +18,7 @@ const isLocalhost = Boolean(
     window.location.hostname.match(
       /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
     )
-);
+)
 
 export function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
@@ -28,7 +28,7 @@ export function register(config) {
       // Our service worker won't work if PUBLIC_URL is on a different origin
       // from what our page is served on. This might happen if a CDN is used to
       // serve assets; see https://github.com/facebook/create-react-app/issues/2374
-      return;
+      return
     }
 
     window.addEventListener('load', () => {
@@ -44,13 +44,13 @@ export function register(config) {
           console.log(
             'This web app is being served cache-first by a service ' +
               'worker. To learn more, visit https://bit.ly/CRA-PWA'
-          );
-        });
+          )
+        })
       } else {
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config);
       }
-    });
+    })
   }
 }
 
@@ -61,7 +61,7 @@ function registerValidSW(swUrl, config) {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
-          return;
+          return
         }
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
@@ -72,7 +72,7 @@ function registerValidSW(swUrl, config) {
               console.log(
                 'New content is available and will be used when all ' +
                   'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
-              );
+              )
 
               // Execute callback
               if (config && config.onUpdate) {
@@ -90,12 +90,12 @@ function registerValidSW(swUrl, config) {
               }
             }
           }
-        };
-      };
+        }
+      }
     })
     .catch(error => {
       console.error('Error during service worker registration:', error);
-    });
+    })
 }
 
 function checkValidServiceWorker(swUrl, config) {
@@ -114,8 +114,8 @@ function checkValidServiceWorker(swUrl, config) {
         navigator.serviceWorker.ready.then(registration => {
           registration.unregister().then(() => {
             window.location.reload();
-          });
-        });
+          })
+        })
       } else {
         // Service worker found. Proceed as normal.
         registerValidSW(swUrl, config);
@@ -124,8 +124,8 @@ function checkValidServiceWorker(swUrl, config) {
     .catch(() => {
       console.log(
         'No internet connection found. App is running in offline mode.'
-      );
-    });
+      )
+    })
 }
 
 export function unregister() {
@@ -136,6 +136,6 @@ export function unregister() {
       })
       .catch(error => {
         console.error(error.message);
-      });
+      })
   }
 }

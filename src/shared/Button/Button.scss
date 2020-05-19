@@ -1,0 +1,38 @@
+.custom-btn {
+    border: none;
+    padding: 0.75rem 2rem;
+    cursor: pointer;
+    background-color: #11da2b;
+    border-radius: 10px;
+    border: 1px solid white;
+    font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    margin: 1rem;
+    color: white;
+
+    &:hover, &:active {
+        background-color: #2dff49;
+    }
+    
+    &--secondary {
+        background-color: #00AFC7;
+
+        &:hover, &:active {
+            background-color: rgb(0, 204, 231);
+        }
+    }
+
+    &--menu {
+        &:hover, &:active {
+            box-shadow: 0px 0px 25px 5px rgb(154, 255, 71);
+        }
+
+    &.custom-btn--secondary {
+        &:hover, &:active {
+            box-shadow: 0px 0px 25px 5px rgb(0, 204, 231);
+        } 
+    }
+    }
+
+}
