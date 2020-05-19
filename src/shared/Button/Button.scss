@@ -5,14 +5,19 @@
     background-color: #11da2b;
     border-radius: 10px;
     border: 1px solid white;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-family: 'Orbitron', sans-serif;
     font-weight: bold;
     margin: 1rem;
     color: white;
+    min-width: 22rem;
 
     &:hover, &:active {
         background-color: #2dff49;
+    }
+
+    &--collapse {
+        min-width: 0;
     }
     
     &--secondary {
@@ -28,11 +33,11 @@
             box-shadow: 0px 0px 25px 5px rgb(154, 255, 71);
         }
 
-    &.custom-btn--secondary {
-        &:hover, &:active {
-            box-shadow: 0px 0px 25px 5px rgb(0, 204, 231);
-        } 
-    }
+        &.custom-btn--secondary {
+            &:hover, &:active {
+                box-shadow: 0px 0px 25px 5px rgb(0, 204, 231);
+            } 
+        }
     }
 
 }

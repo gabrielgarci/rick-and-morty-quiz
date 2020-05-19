@@ -1,0 +1,96 @@
+.settings {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    color: white;
+
+    .form{
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .field {
+        padding: 1.8rem 1rem;
+        width: calc(100% - 20px);
+
+        &__name {
+            font-size: 3rem;
+            margin-left: 1rem;
+        }
+    
+        &__input {
+            border: 1px solid rgba(255, 255, 255, 0);
+            background-color: rgba(255, 255, 255, 0.349);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 10px;
+            width: calc( 100% - 20px);
+
+            &--error {
+                border: 1px solid red;
+            }
+        }
+
+        &__error {
+            color: red;
+            margin-left: 2rem;
+            font-size: 1.3rem;
+            opacity: 0;
+
+            &--show {
+                opacity: 1;
+            }
+        }
+
+        &__count {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+
+            .number {
+                margin: 0 3rem;
+            }
+
+            .arrow {
+                height: 4rem;
+                cursor: pointer;
+                filter: brightness(80%);
+                
+                &:hover {
+                    filter: brightness(100%);
+                }
+
+                &--decrease {
+                    animation: 0.5s infinite alternate arrow-backwards;
+                }
+
+                &--increase {
+                    animation: 0.5s infinite alternate arrow-forwards;
+                }
+            }
+        }
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: space-around;
+        max-width: 600px;
+        width: 100%;
+    }
+}
+
+@keyframes arrow-backwards {
+    from {transform: translateX(0) rotate(90deg);}
+    to {transform: translateX(-10px) rotate(90deg);}
+}
+
+@keyframes arrow-forwards {
+    from {transform: translateX(0) rotate(-90deg);}
+    to {transform: translateX(10px) rotate(-90deg);}
+}

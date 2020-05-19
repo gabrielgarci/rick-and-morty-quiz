@@ -4,6 +4,7 @@ import './HomePage.scss'
 import title from '../../assets/images/title.png'
 import logo from '../../assets/images/logo.png'
 import Button from '../../shared/Button/Button'
+import { Link } from 'react-router-dom'
 
 const HomePage = () => {
     return (
@@ -12,7 +13,7 @@ const HomePage = () => {
             <img className="menu__logo" src={logo} alt="logo"></img>
             <div className="menu__controllers">
                 <Button text="RECORDS" types={["menu", "secondary"]}/>
-                <Button text="NEW GAME" types={["menu"]} />
+                <Link to="/game/settings"><Button text="NEW GAME" types={["menu"]} /></Link>
             </div>
         </div>
     )
