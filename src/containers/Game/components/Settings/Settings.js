@@ -1,36 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import './Settings.scss'
 import arrow from '../../../../assets/icon/arrow.svg'
 import Button from '../../../../shared/Button/Button'
-import { useHistory } from 'react-router-dom'
 
 
 const Settings = props => {
-
-    const history = useHistory()
-
-
-    const [ inputClassState, setInputClassState ] = useState('field__input')
-    const [ errorInputState, setErrorInputState ] = useState(false)
-
-    const navigate = () => {
-        if (props.name.length > 3) {
-            history.push('./play')
-        } else {
-            setInputClassState('field__input field__input--error')
-            setErrorInputState(true)
-        }
-    }
 
     return (
         <div className="settings">
             <div className="form">
                 <div className="field">
                     <p className="field__name" >NAME</p>
-                    <input className={inputClassState} type="text" defaultValue={props.name} placeholder="User name" onBlur={(event) => props.changeName(event.target.value)}/>
-                    <p className={errorInputState ? 'field__error field__error--show' : 'field__error'} >*Invalid name! Name must have at least 3 character.</p>
+                    <input 
+                        className={props.inputError ? 'field__input field__input--error' : 'field__input'} 
+                        type="text" 
+                        defaultValue={props.name} 
+                        placeholder="User name" 
+                        onBlur={(event) => props.changeName(event.target.value)}
+                    />
+                    <p className={props.inputError ? 'field__error field__error--show' : 'field__error'} >
+                        *Invalid name! Name must have at least 3 character.
+                    </p>
                 </div>
                 <div className="field">
                     <p className="field__name" >ROUNDS</p>
@@ -43,7 +35,7 @@ const Settings = props => {
             </div>
             <div className="btn-group">
                 <Button text="CANCEL" types={["secondary", "collapse"]} />
-                <Button text="ACCEPT" types={["collapse"]} clicked={navigate}/>
+                <Button text="ACCEPT" types={["collapse"]} clicked={props.accept}/>
             </div>
         </div>
     )
@@ -52,9 +44,11 @@ const Settings = props => {
 Settings.propTypes = {
     name: PropTypes.string,
     rounds: PropTypes.number,
+    inputError: PropTypes.bool,
     changeName: PropTypes.func,
     addQty: PropTypes.func,
-    reduceQty: PropTypes.func
+    reduceQty: PropTypes.func,
+    accept: PropTypes.func,
 }
 
 export default Settings
