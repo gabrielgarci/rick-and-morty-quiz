@@ -62,7 +62,8 @@ const Game = () => {
                     const validCharacters = resp.data.filter(character => character.status === 'Alive' || character.status === 'Dead')
                     setCharactersState(prevState => [...prevState , ...validCharacters])
                 } else {
-                    setCharactersState(prevState => [...prevState, resp])
+                    console.log(resp.data)
+                    if ( resp.data.status === 'Alive' || resp.data.status === 'Dead') setCharactersState(prevState => [...prevState, resp.data])
                 }
             })
     }

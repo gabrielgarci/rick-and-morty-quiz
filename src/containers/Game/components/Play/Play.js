@@ -10,13 +10,18 @@ const Play = props => (
         {
             props.loading ?
             <Spinner /> : 
-            <h1 style={{color:"white"}}>Weeeee</h1>
+            <div className="round">
+                <div className="character">
+                    <img src={props.character.image}/>
+                </div>
+            </div>
         }
     </div>
 )
 
 Play.propTypes = {
     loading: PropTypes.bool,
+    character: PropTypes.object
 }
 
 export default Play
