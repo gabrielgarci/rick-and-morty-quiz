@@ -28,6 +28,14 @@
         }
     }
 
+    &--dead {
+        background-color: rgb(177, 0, 24);
+
+        &:hover, &:active {
+            background-color: rgb(230, 39, 64);
+        }
+    }
+
     &--menu {
         &:hover, &:active {
             box-shadow: 0px 0px 25px 5px rgb(154, 255, 71);

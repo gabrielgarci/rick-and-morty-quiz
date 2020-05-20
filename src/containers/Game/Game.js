@@ -76,6 +76,7 @@ const Game = () => {
                 () => <Play
                         loading={loading}
                         character={characters[currentRound]}
+                        round={[currentRound, rounds].join(' / ')}
                     />
             }/>}
             <Route path={`${match.path}/settings`} render={

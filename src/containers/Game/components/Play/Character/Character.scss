@@ -11,16 +11,25 @@
 
     &__info {
         border-radius: 0 0 10px 10px;
-        background-color: rgb(143, 133, 177);
+        background-color: #365c73;
+        padding: 1rem 0;
 
         .field {
-            padding: 0 2rem;
+            display: flex;
+            padding: 1rem 2rem;
             font-size: 1.4rem;
             color: white;
+            letter-spacing: 2px;
 
             &__title {
                 font-weight: bolder;
-                width: 80px;
+                display: inline-block;
+                width: 120px;
+                margin: 0;
+            }
+
+            &__data {
+                margin: 0;
             }
         }
     }
