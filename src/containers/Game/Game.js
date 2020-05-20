@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 import Settings from './components/Settings/Settings'
 import Play from './components/Play/Play'
@@ -12,6 +13,9 @@ const Game = () => {
     const [ nameState, setNameState ] = useState('')
     const [ roundsState, setRoundsState ] = useState(10)
     const [ errorSettingState, setErrorSettingState ] = useState(false)
+    const [ loadingState, setLoadingState ] = useState(true)
+    const [ charactersState, setCharactersState ] = useState([])
+    const [ currentRoundState, setCurrentRoundState] = useState(0)
 
 
     /**
@@ -30,13 +34,47 @@ const Game = () => {
     }
 
     const acceptSettingsHandler = () => {
-        nameState.length > 2 ? history.push('./play') : setErrorSettingState(true)
+        if (nameState.length > 2) {
+            history.push('./play')
+            requestCharacters()
+        } else {
+            setErrorSettingState(true)
+        }
     }
+
+    /**
+     * Play
+     */
+    useEffect(() => {
+        if (history.location.pathname === '/game/play') {
+            charactersState.length === roundsState ? 
+                setTimeout(() => setLoadingState(false), 500) : 
+                requestCharacters()
+        }
+    }, [charactersState])
+
+    const requestCharacters = () => {
+        const remainCharacter = roundsState - charactersState.length
+        const randomNumbers = Array.from({length: remainCharacter}, () => Math.floor(Math.random() * 591))
+        axios.get(`https://rickandmortyapi.com/api/character/${randomNumbers.join(',')}`)
+            .then(resp => {
+                if (randomNumbers.length > 1) {
+                    const validCharacters = resp.data.filter(character => character.status === 'Alive' || character.status === 'Dead')
+                    setCharactersState(prevState => [...prevState , ...validCharacters])
+                } else {
+                    setCharactersState(prevState => [...prevState, resp])
+                }
+            })
+    }
+
 
     return (
         <Switch>
             {<Route path={`${match.path}/play`} render={
-                () => <Play />
+                () => <Play
+                        loading={loadingState}
+                        character={charactersState[currentRoundState]}
+                    />
             }/>}
             <Route path={`${match.path}/settings`} render={
                 () => <Settings 

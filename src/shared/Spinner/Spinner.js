@@ -5,8 +5,10 @@ import mortySpinner from '../../assets/images/morty-face.png'
 
 const Spinner = () => (
     <div className="spinner">
-        <img className="spinner__pic" src={mortySpinner} alt="Loading" />
-        <h2 className="spinner__text">LOADING...</h2>
+        <div className="spinner__frame" >
+            <img className="pic" src={mortySpinner} alt="Loading" />
+        </div>
+        <h2 className="spinner__text"></h2>
     </div>
 )
 
