@@ -10,35 +10,35 @@ const Game = () => {
     const match = useRouteMatch()
     const history = useHistory()
 
-    const [ nameState, setNameState ] = useState('')
-    const [ roundsState, setRoundsState ] = useState(10)
-    const [ errorSettingState, setErrorSettingState ] = useState(false)
-    const [ loadingState, setLoadingState ] = useState(true)
-    const [ charactersState, setCharactersState ] = useState([])
-    const [ currentRoundState, setCurrentRoundState] = useState(0)
+    const [ name, setName ] = useState('')
+    const [ rounds, setRounds ] = useState(10)
+    const [ errorSetting, setErrorSetting ] = useState(false)
+    const [ loading, setLoading ] = useState(true)
+    const [ characters, setCharacters ] = useState([])
+    const [ currentRound, setCurrentRound] = useState(0)
 
 
     /**
      * Settings
      */
     const changeNameHandler = (name) => {
-        setNameState(name)
+        setName(name)
     }
 
     const addQtyHandler = () => {
-        setRoundsState(prevState => prevState < 30 ? prevState += 5 : prevState )
+        setRounds(prevState => prevState < 30 ? prevState += 5 : prevState )
     }
 
     const reduceQtyHandler = () => {
-        setRoundsState(prevState => prevState > 5 ? prevState -= 5 : prevState )
+        setRounds(prevState => prevState > 5 ? prevState -= 5 : prevState )
     }
 
     const acceptSettingsHandler = () => {
-        if (nameState.length > 2) {
+        if (name.length > 2) {
             history.push('./play')
             requestCharacters()
         } else {
-            setErrorSettingState(true)
+            setErrorSetting(true)
         }
     }
 
@@ -47,23 +47,24 @@ const Game = () => {
      */
     useEffect(() => {
         if (history.location.pathname === '/game/play') {
-            charactersState.length === roundsState ? 
-                setTimeout(() => setLoadingState(false), 500) : 
+            characters.length === rounds ? 
+                setTimeout(() => setLoading(false), 500) : 
                 requestCharacters()
         }
-    }, [charactersState])
+    }, [characters])
 
+    // Ensure there are only status 'Alive' or 'Dead'
     const requestCharacters = () => {
-        const remainCharacter = roundsState - charactersState.length
+        const remainCharacter = rounds - characters.length
         const randomNumbers = Array.from({length: remainCharacter}, () => Math.floor(Math.random() * 591))
         axios.get(`https://rickandmortyapi.com/api/character/${randomNumbers.join(',')}`)
             .then(resp => {
                 if (randomNumbers.length > 1) {
                     const validCharacters = resp.data.filter(character => character.status === 'Alive' || character.status === 'Dead')
-                    setCharactersState(prevState => [...prevState , ...validCharacters])
+                    validCharacters ? setCharacters(prevState => [...prevState , ...validCharacters]) : requestCharacters()
                 } else {
-                    console.log(resp.data)
-                    if ( resp.data.status === 'Alive' || resp.data.status === 'Dead') setCharactersState(prevState => [...prevState, resp.data])
+                    if ( resp.data.status === 'Alive' || resp.data.status === 'Dead') setCharacters(prevState => [...prevState, resp.data])
+                    else requestCharacters()
                 }
             })
     }
@@ -73,8 +74,8 @@ const Game = () => {
         <Switch>
             {<Route path={`${match.path}/play`} render={
                 () => <Play
-                        loading={loadingState}
-                        character={charactersState[currentRoundState]}
+                        loading={loading}
+                        character={characters[currentRound]}
                     />
             }/>}
             <Route path={`${match.path}/settings`} render={
@@ -83,9 +84,9 @@ const Game = () => {
                         reduceQty={reduceQtyHandler} 
                         changeName={changeNameHandler}
                         accept={acceptSettingsHandler}
-                        name={nameState} 
-                        rounds={roundsState}
-                        inputError={errorSettingState}
+                        name={name} 
+                        rounds={rounds}
+                        inputError={errorSetting}
                     />
                 }/>
         </Switch>

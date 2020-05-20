@@ -1,0 +1,27 @@
+.character {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    max-width: calc(100% - 80px);
+
+    &__pic {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+    }
+
+    &__info {
+        border-radius: 0 0 10px 10px;
+        background-color: rgb(143, 133, 177);
+
+        .field {
+            padding: 0 2rem;
+            font-size: 1.4rem;
+            color: white;
+
+            &__title {
+                font-weight: bolder;
+                width: 80px;
+            }
+        }
+    }
+}

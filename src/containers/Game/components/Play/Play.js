@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import './Play.scss'
 
 import Spinner from '../../../../shared/Spinner/Spinner'
+import Character from './Character/Character'
 
 const Play = props => (
     <div className="play">
@@ -11,9 +12,12 @@ const Play = props => (
             props.loading ?
             <Spinner /> : 
             <div className="round">
-                <div className="character">
-                    <img src={props.character.image}/>
-                </div>
+                <Character 
+                    img={props.character.image}
+                    name={props.character.name}
+                    origin={props.character.origin.name}
+                    species={props.character.species}
+                />
             </div>
         }
     </div>
