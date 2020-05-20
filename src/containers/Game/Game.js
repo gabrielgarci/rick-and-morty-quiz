@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom'
+
 import Settings from './components/Settings/Settings'
+import Play from './components/Play/Play'
 
 const Game = () => {
 
@@ -11,6 +13,10 @@ const Game = () => {
     const [ roundsState, setRoundsState ] = useState(10)
     const [ errorSettingState, setErrorSettingState ] = useState(false)
 
+
+    /**
+     * Settings
+     */
     const changeNameHandler = (name) => {
         setNameState(name)
     }
@@ -24,18 +30,14 @@ const Game = () => {
     }
 
     const acceptSettingsHandler = () => {
-        if (nameState.length > 2) {
-            history.push('./play')
-        } else {
-            setErrorSettingState(true)
-        }
+        nameState.length > 2 ? history.push('./play') : setErrorSettingState(true)
     }
 
     return (
         <Switch>
-            {/* <Route path={`${match.path}/settings`} render={
+            {<Route path={`${match.path}/play`} render={
                 () => <Play />
-            }/> */}
+            }/>}
             <Route path={`${match.path}/settings`} render={
                 () => <Settings 
                         addQty={addQtyHandler} 
