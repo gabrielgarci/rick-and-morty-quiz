@@ -1,8 +1,11 @@
 .character {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     width: 300px;
     max-width: calc(100% - 80px);
+    height: auto;
+    max-height: calc(100vh - 150px);
 
     &__pic {
         width: 100%;
@@ -16,8 +19,8 @@
 
         .field {
             display: flex;
-            padding: 1rem 2rem;
-            font-size: 1.4rem;
+            padding: 0.5rem 2rem;
+            font-size: 1.2rem;
             color: white;
             letter-spacing: 2px;
 

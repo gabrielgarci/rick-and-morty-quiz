@@ -11,18 +11,20 @@ const Scoreboard = props => (
             <p className="scoreboard__item">{props.round}</p>
         </div>
         <div className="scoreboard__streak">
-            <p>0</p>
+            <p>{props.streak}</p>
             <img className="streak-logo" src={fire} alt="fire" />
         </div>
         <div>
             <p className="scoreboard__item">SCORE</p>
-            <p className="scoreboard__item">3000</p>
+            <p className="scoreboard__item">{props.score}</p>
         </div>
     </div>
 )
 
-Scoreboard.prototype = {
-    round: PropTypes.string
+Scoreboard.propTypes = {
+    round: PropTypes.string,
+    score: PropTypes.number,
+    streak: PropTypes.number
 }
 
 export default Scoreboard

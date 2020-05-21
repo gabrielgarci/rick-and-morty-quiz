@@ -16,6 +16,9 @@ const Game = () => {
     const [ loading, setLoading ] = useState(true)
     const [ characters, setCharacters ] = useState([])
     const [ currentRound, setCurrentRound] = useState(0)
+    const [ score, setScore ] = useState(0)
+    const [ streak, setStreak ] = useState(0)
+    const [ addedScore, setAddedScore ] = useState(0)
 
 
     /**
@@ -56,7 +59,8 @@ const Game = () => {
     // Ensure there are only status 'Alive' or 'Dead'
     const requestCharacters = () => {
         const remainCharacter = rounds - characters.length
-        const randomNumbers = Array.from({length: remainCharacter}, () => Math.floor(Math.random() * 591))
+        const totalCharacters = 591
+        const randomNumbers = Array.from({length: remainCharacter}, () => Math.floor(Math.random() * totalCharacters))
         axios.get(`https://rickandmortyapi.com/api/character/${randomNumbers.join(',')}`)
             .then(resp => {
                 if (randomNumbers.length > 1) {
@@ -69,6 +73,19 @@ const Game = () => {
             })
     }
 
+    const answer = resp => {
+        if ( resp === characters[currentRound].status ) {
+            const points = (Math.floor(streak/5) + 1) * 100
+            setStreak(prevState => prevState + 1)
+            setScore(prevState => prevState + points)
+            setAddedScore(points)
+        } else {
+            setStreak(0)
+            setAddedScore(0)
+        }
+        setCurrentRound(prevState => prevState + 1)
+    }
+
 
     return (
         <Switch>
@@ -76,7 +93,11 @@ const Game = () => {
                 () => <Play
                         loading={loading}
                         character={characters[currentRound]}
-                        round={[currentRound, rounds].join(' / ')}
+                        round={[currentRound + 1, rounds].join(' / ')}
+                        score={score}
+                        addedScore={addedScore}
+                        streak={streak}
+                        answer={answer}
                     />
             }/>}
             <Route path={`${match.path}/settings`} render={
