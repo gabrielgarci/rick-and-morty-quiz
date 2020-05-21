@@ -10,7 +10,7 @@ import Scoreboard from './Scoreboard/Scoreboard'
 
 const Play = props => (
     <Fragment>
-        {props.addedScore ? <div className="added-points"><p>+{props.addedScore}</p></div> : null}
+        {props.showScore ? <div className="added-points"><p>+{props.addedScore}</p></div> : null}
         <div className="play">
             {
                 props.loading ?
@@ -43,6 +43,7 @@ Play.propTypes = {
     accept: PropTypes.func,
     round: PropTypes.string,
     score: PropTypes.number,
+    showScore: PropTypes.bool,
     addedScore: PropTypes.number,
     streak: PropTypes.number,
     answer: PropTypes.func

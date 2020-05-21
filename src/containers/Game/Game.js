@@ -19,6 +19,7 @@ const Game = () => {
     const [ score, setScore ] = useState(0)
     const [ streak, setStreak ] = useState(0)
     const [ addedScore, setAddedScore ] = useState(0)
+    const [ showScore, setShowScore ] = useState(false)
 
 
     /**
@@ -79,6 +80,8 @@ const Game = () => {
             setStreak(prevState => prevState + 1)
             setScore(prevState => prevState + points)
             setAddedScore(points)
+            setShowScore(true)
+            setTimeout(() => setShowScore(false), 1200)
         } else {
             setStreak(0)
             setAddedScore(0)
@@ -91,24 +94,25 @@ const Game = () => {
         <Switch>
             {<Route path={`${match.path}/play`} render={
                 () => <Play
-                        loading={loading}
-                        character={characters[currentRound]}
-                        round={[currentRound + 1, rounds].join(' / ')}
-                        score={score}
-                        addedScore={addedScore}
-                        streak={streak}
-                        answer={answer}
+                        loading = {loading}
+                        character = {characters[currentRound]}
+                        round = {[currentRound + 1, rounds].join(' / ')}
+                        score = {score}
+                        showScore = {showScore}
+                        addedScore = {addedScore}
+                        streak = {streak}
+                        answer = {answer}
                     />
             }/>}
-            <Route path={`${match.path}/settings`} render={
-                () => <Settings 
-                        addQty={addQtyHandler} 
-                        reduceQty={reduceQtyHandler} 
-                        changeName={changeNameHandler}
-                        accept={acceptSettingsHandler}
-                        name={name} 
-                        rounds={rounds}
-                        inputError={errorSetting}
+            <Route path = {`${match.path}/settings`} render = {
+                ()  => <Settings 
+                        addQty = {addQtyHandler} 
+                        reduceQty = {reduceQtyHandler} 
+                        changeName = {changeNameHandler}
+                        accept = {acceptSettingsHandler}
+                        name = {name} 
+                        rounds = {rounds}
+                        inputError = {errorSetting}
                     />
                 }/>
         </Switch>
