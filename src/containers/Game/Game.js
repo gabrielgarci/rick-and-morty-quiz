@@ -51,11 +51,18 @@ const Game = () => {
      */
     useEffect(() => {
         if (history.location.pathname === '/game/play') {
-            characters.length === rounds ? 
-                setTimeout(() => setLoading(false), 500) : 
-                requestCharacters()
+            characters.length === rounds ? setTimeout(() => setLoading(false), 500) : requestCharacters()
         }
     }, [characters])
+
+    useEffect(() => {
+        if (showScore) {
+            setTimeout(() => {
+                setShowScore(false)
+                currentRound + 1 !== rounds ? setCurrentRound(prevState => prevState + 1) : history.push('./resume')
+            }, 1200)
+        }
+    }, [showScore])
 
     // Ensure there are only status 'Alive' or 'Dead'
     const requestCharacters = () => {
@@ -68,8 +75,7 @@ const Game = () => {
                     const validCharacters = resp.data.filter(character => character.status === 'Alive' || character.status === 'Dead')
                     validCharacters ? setCharacters(prevState => [...prevState , ...validCharacters]) : requestCharacters()
                 } else {
-                    if ( resp.data.status === 'Alive' || resp.data.status === 'Dead') setCharacters(prevState => [...prevState, resp.data])
-                    else requestCharacters()
+                    (resp.data.status === 'Alive' || resp.data.status === 'Dead') ? setCharacters(prevState => [...prevState, resp.data]) : requestCharacters()
                 }
             })
     }
@@ -80,19 +86,17 @@ const Game = () => {
             setStreak(prevState => prevState + 1)
             setScore(prevState => prevState + points)
             setAddedScore(points)
-            setShowScore(true)
-            setTimeout(() => setShowScore(false), 1200)
         } else {
             setStreak(0)
             setAddedScore(0)
         }
-        setCurrentRound(prevState => prevState + 1)
+        setShowScore(true)
     }
 
 
     return (
         <Switch>
-            {<Route path={`${match.path}/play`} render={
+            <Route path={`${match.path}/play`} render={
                 () => <Play
                         loading = {loading}
                         character = {characters[currentRound]}
@@ -103,7 +107,7 @@ const Game = () => {
                         streak = {streak}
                         answer = {answer}
                     />
-            }/>}
+            }/>
             <Route path = {`${match.path}/settings`} render = {
                 ()  => <Settings 
                         addQty = {addQtyHandler} 

@@ -1,4 +1,4 @@
-.added-points {
+.answer-response {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,10 +7,17 @@
     position: fixed;
     font-size: 4rem;
     opacity: 1;
-    color: green;
     background-color: rgba(0, 0, 0, 0.3);
     animation: 1s forwards add-points;
     z-index: 2;
+
+    &--correct {
+        color: green;
+    }
+
+    &--fail {
+        color: red;
+    }
 }
 
 .play {
