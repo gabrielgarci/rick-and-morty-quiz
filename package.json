@@ -1,6 +1,6 @@
 {
   "name": "rick-and-morty-quiz",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "http://gabrielgarci.github.io/rick-and-morty-quiz",
   "private": true,
   "dependencies": {
