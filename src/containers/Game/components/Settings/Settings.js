@@ -32,8 +32,8 @@ const Settings = props => (
             </div>
         </div>
         <div className="btn-group">
-            <Button text="CANCEL" types={["secondary", "collapse"]} />
-            <Button text="ACCEPT" types={["collapse"]} clicked={props.accept}/>
+            <Button text="CANCEL" types={["secondary", "collapse"]} clicked={() => props.action('cancel')}/>
+            <Button text="ACCEPT" types={["collapse"]} clicked={() => props.action('accept')}/>
         </div>
     </div>
 )

@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import Settings from './components/Settings/Settings'
 import Play from './components/Play/Play'
+import Resume from './components/Resume/Resume'
 
 const Game = () => {
 
@@ -20,6 +21,7 @@ const Game = () => {
     const [ streak, setStreak ] = useState(0)
     const [ addedScore, setAddedScore ] = useState(0)
     const [ showScore, setShowScore ] = useState(false)
+    const [ record, setRecord ] = useState(undefined)
 
 
     /**
@@ -37,12 +39,16 @@ const Game = () => {
         setRounds(prevState => prevState > 5 ? prevState -= 5 : prevState )
     }
 
-    const acceptSettingsHandler = () => {
-        if (name.length > 2) {
-            history.push('./play')
-            requestCharacters()
+    const onAction = type => {
+        if ( type === 'accept' ) {
+            if (name.length > 2) {
+                history.push('./play')
+                requestCharacters()
+            } else {
+                setErrorSetting(true)
+            }
         } else {
-            setErrorSetting(true)
+            history.push('')
         }
     }
 
@@ -60,7 +66,7 @@ const Game = () => {
             setTimeout(() => {
                 setShowScore(false)
                 currentRound + 1 !== rounds ? setCurrentRound(prevState => prevState + 1) : history.push('./resume')
-            }, 1200)
+            }, 1100)
         }
     }, [showScore])
 
@@ -93,32 +99,60 @@ const Game = () => {
         setShowScore(true)
     }
 
+    /**
+     * Resume
+     */
+    useEffect(() => {
+        if ( history.location.pathname === '/game/resume' ) {
+            axios.get('https://rick-and-morty-quiz-c69bc.firebaseio.com/records.json?orderBy=%22score%22&limitToLast=1')
+                .then(resp => {
+                    resp.data ? setRecord(resp.data[Object.keys(resp.data)[0]].score) : setRecord(0)
+                })
+        }
+    }, [history.location.pathname])
+
+    const sendGameResult = () => {
+        const gameResult = {
+            user: name,
+            score: score
+        }
+        axios.post('https://rick-and-morty-quiz-c69bc.firebaseio.com/records.json', gameResult)
+            .then( () => history.push(''))
+    }
+
 
     return (
         <Switch>
-            <Route path={`${match.path}/play`} render={
-                () => <Play
-                        loading = {loading}
-                        character = {characters[currentRound]}
-                        round = {[currentRound + 1, rounds].join(' / ')}
-                        score = {score}
-                        showScore = {showScore}
-                        addedScore = {addedScore}
-                        streak = {streak}
-                        answer = {answer}
+            <Route path = { `${match.path}/settings` } render = {
+                ()  => <Settings 
+                        addQty = { addQtyHandler } 
+                        reduceQty = { reduceQtyHandler } 
+                        changeName = { changeNameHandler }
+                        action = { onAction }
+                        name = { name } 
+                        rounds = { rounds }
+                        inputError = { errorSetting }
                     />
             }/>
-            <Route path = {`${match.path}/settings`} render = {
-                ()  => <Settings 
-                        addQty = {addQtyHandler} 
-                        reduceQty = {reduceQtyHandler} 
-                        changeName = {changeNameHandler}
-                        accept = {acceptSettingsHandler}
-                        name = {name} 
-                        rounds = {rounds}
-                        inputError = {errorSetting}
+            <Route path={ `${match.path}/play` } render={
+                () => <Play
+                        loading = { loading }
+                        character = { characters[currentRound] }
+                        round = { [ currentRound + 1 , rounds ].join(' / ')}
+                        score = { score }
+                        showScore = { showScore }
+                        addedScore = { addedScore }
+                        streak = { streak }
+                        answer = { answer }
                     />
-                }/>
+            }/>
+            <Route path={ `${match.path}/resume` } render={
+                () => <Resume 
+                        send = {sendGameResult}
+                        record = {record}
+                />
+            }
+            />
         </Switch>
     )
 }
