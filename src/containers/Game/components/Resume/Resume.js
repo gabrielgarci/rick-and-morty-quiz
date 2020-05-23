@@ -17,7 +17,7 @@ const Resume = props => {
         <Fragment>
             <h2 className="resume__title">RESUME</h2>
             <img className="resume__pic" src={resumePic} alt="resume"/>
-            <p>SCORE: {props.score}</p>
+            <p className="resume__score" >SCORE: {props.score}</p>
         </Fragment>
 
     return (
