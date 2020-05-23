@@ -23,6 +23,10 @@ const Game = () => {
     const [ showScore, setShowScore ] = useState(false)
     const [ record, setRecord ] = useState(undefined)
 
+    // Guard
+    useEffect( () => {
+        if ( !name ) history.push('./settings')
+    }, [])
 
     /**
      * Settings
@@ -148,8 +152,9 @@ const Game = () => {
             }/>
             <Route path={ `${match.path}/resume` } render={
                 () => <Resume 
-                        send = {sendGameResult}
-                        record = {record}
+                        send = { sendGameResult }
+                        record = { record }
+                        score = { score }
                 />
             }
             />

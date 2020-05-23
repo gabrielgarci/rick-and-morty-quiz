@@ -12,7 +12,7 @@ const HomePage = () => {
             <img className="menu__title" src={title} alt="title"></img>
             <img className="menu__logo" src={logo} alt="logo"></img>
             <div className="menu__controllers">
-                <Button text="RECORDS" types={["menu", "secondary"]}/>
+                <Link to="/records"><Button text="RECORDS" types={["menu", "secondary"]}/></Link>
                 <Link to="/game/settings"><Button text="NEW GAME" types={["menu"]} /></Link>
             </div>
         </div>
