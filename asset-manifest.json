@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/rick-and-morty-quiz/static/css/main.e0cd9782.chunk.css",
-    "main.js": "/rick-and-morty-quiz/static/js/main.4278e366.chunk.js",
-    "main.js.map": "/rick-and-morty-quiz/static/js/main.4278e366.chunk.js.map",
+    "main.js": "/rick-and-morty-quiz/static/js/main.ed267808.chunk.js",
+    "main.js.map": "/rick-and-morty-quiz/static/js/main.ed267808.chunk.js.map",
     "runtime-main.js": "/rick-and-morty-quiz/static/js/runtime-main.c43ec2ea.js",
     "runtime-main.js.map": "/rick-and-morty-quiz/static/js/runtime-main.c43ec2ea.js.map",
     "static/js/2.0f6acd71.chunk.js": "/rick-and-morty-quiz/static/js/2.0f6acd71.chunk.js",
     "static/js/2.0f6acd71.chunk.js.map": "/rick-and-morty-quiz/static/js/2.0f6acd71.chunk.js.map",
     "index.html": "/rick-and-morty-quiz/index.html",
-    "precache-manifest.2713d837b5e1b3b2777a5f33789182e2.js": "/rick-and-morty-quiz/precache-manifest.2713d837b5e1b3b2777a5f33789182e2.js",
+    "precache-manifest.f8af8bbe69c91d8ce2e140a861a18adb.js": "/rick-and-morty-quiz/precache-manifest.f8af8bbe69c91d8ce2e140a861a18adb.js",
     "service-worker.js": "/rick-and-morty-quiz/service-worker.js",
     "static/css/main.e0cd9782.chunk.css.map": "/rick-and-morty-quiz/static/css/main.e0cd9782.chunk.css.map",
     "static/js/2.0f6acd71.chunk.js.LICENSE.txt": "/rick-and-morty-quiz/static/js/2.0f6acd71.chunk.js.LICENSE.txt",
@@ -24,6 +24,6 @@
     "static/js/runtime-main.c43ec2ea.js",
     "static/js/2.0f6acd71.chunk.js",
     "static/css/main.e0cd9782.chunk.css",
-    "static/js/main.4278e366.chunk.js"
+    "static/js/main.ed267808.chunk.js"
   ]
 }
