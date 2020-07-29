@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/rick-and-morty-quiz/static/css/main.bfe69e01.chunk.css",
-    "main.js": "/rick-and-morty-quiz/static/js/main.6c44376e.chunk.js",
-    "main.js.map": "/rick-and-morty-quiz/static/js/main.6c44376e.chunk.js.map",
+    "main.css": "/rick-and-morty-quiz/static/css/main.f0b43dd6.chunk.css",
+    "main.js": "/rick-and-morty-quiz/static/js/main.6878787f.chunk.js",
+    "main.js.map": "/rick-and-morty-quiz/static/js/main.6878787f.chunk.js.map",
     "runtime-main.js": "/rick-and-morty-quiz/static/js/runtime-main.c43ec2ea.js",
     "runtime-main.js.map": "/rick-and-morty-quiz/static/js/runtime-main.c43ec2ea.js.map",
     "static/js/2.0f6acd71.chunk.js": "/rick-and-morty-quiz/static/js/2.0f6acd71.chunk.js",
     "static/js/2.0f6acd71.chunk.js.map": "/rick-and-morty-quiz/static/js/2.0f6acd71.chunk.js.map",
     "index.html": "/rick-and-morty-quiz/index.html",
-    "precache-manifest.cf8c92a5323c53daa80a1ded30249112.js": "/rick-and-morty-quiz/precache-manifest.cf8c92a5323c53daa80a1ded30249112.js",
+    "precache-manifest.91162cfb748ec3179c998f2164280e6b.js": "/rick-and-morty-quiz/precache-manifest.91162cfb748ec3179c998f2164280e6b.js",
     "service-worker.js": "/rick-and-morty-quiz/service-worker.js",
-    "static/css/main.bfe69e01.chunk.css.map": "/rick-and-morty-quiz/static/css/main.bfe69e01.chunk.css.map",
+    "static/css/main.f0b43dd6.chunk.css.map": "/rick-and-morty-quiz/static/css/main.f0b43dd6.chunk.css.map",
     "static/js/2.0f6acd71.chunk.js.LICENSE.txt": "/rick-and-morty-quiz/static/js/2.0f6acd71.chunk.js.LICENSE.txt",
     "static/media/arrow.svg": "/rick-and-morty-quiz/static/media/arrow.d6d0b489.svg",
     "static/media/finish.png": "/rick-and-morty-quiz/static/media/finish.82d32ff6.png",
@@ -23,7 +23,7 @@
   "entrypoints": [
     "static/js/runtime-main.c43ec2ea.js",
     "static/js/2.0f6acd71.chunk.js",
-    "static/css/main.bfe69e01.chunk.css",
-    "static/js/main.6c44376e.chunk.js"
+    "static/css/main.f0b43dd6.chunk.css",
+    "static/js/main.6878787f.chunk.js"
   ]
 }
