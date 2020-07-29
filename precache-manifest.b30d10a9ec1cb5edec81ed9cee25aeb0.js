@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b966ead0e2ef18c5c85d581efa40fb33",
+    "revision": "cfcaa80c25ace29cd6b83cf081bfdb60",
     "url": "/rick-and-morty-quiz/index.html"
   },
   {
-    "revision": "105edba6456506bf06c9",
+    "revision": "a043046db959f8bfdeba",
     "url": "/rick-and-morty-quiz/static/css/main.f0b43dd6.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/rick-and-morty-quiz/static/js/2.0f6acd71.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "105edba6456506bf06c9",
-    "url": "/rick-and-morty-quiz/static/js/main.2eca2773.chunk.js"
+    "revision": "a043046db959f8bfdeba",
+    "url": "/rick-and-morty-quiz/static/js/main.85dd8228.chunk.js"
   },
   {
     "revision": "e0dad865865581857247",
