@@ -21,7 +21,7 @@ const Game = () => {
     const [ streak, setStreak ] = useState(0)
     const [ addedScore, setAddedScore ] = useState(0)
     const [ showScore, setShowScore ] = useState(false)
-    const [ record, setRecord ] = useState(undefined)
+    const [ records, setRecords ] = useState([])
 
     // Guard
     useEffect( () => {
@@ -107,23 +107,49 @@ const Game = () => {
      * Resume
      */
     useEffect(() => {
-        if ( history.location.pathname === '/game/resume' ) {
-            axios.get('https://rick-and-morty-quiz-c69bc.firebaseio.com/records.json?orderBy=%22score%22&limitToLast=1')
+        if ( characters.length === rounds ) {
+            // Get global record
+            axios.get('https://rick-and-morty-quiz-c69bc.firebaseio.com/records.json')
                 .then(resp => {
-                    resp.data ? setRecord(resp.data[Object.keys(resp.data)[0]].score) : setRecord(0)
+                    const scores = Object.keys(resp.data).map( key => {
+                        const score = resp.data[key]
+                        score.id = key
+                        return score
+                    } )
+                    scores.sort( (a, b) =>{
+                        if ( a.score > b.score ) return -1
+                        if ( a.score < b.score ) return 1
+                        return 0
+                    })
+                    setRecords(scores)
                 })
         }
-    }, [history.location.pathname])
+    }, [characters])
 
-    const sendGameResult = () => {
-        const gameResult = {
-            user: name,
-            score: score
+    const finishGame = () => {
+
+        const previousScore = records.find(record => record.user === name)
+
+        if (previousScore && score > previousScore.score) {
+            previousScore.score = score
+            const gameResult = {
+                user: previousScore.user,
+                score: score
+            }
+            axios.put(`https://rick-and-morty-quiz-c69bc.firebaseio.com/records/${previousScore.id}.json`, gameResult)
+                .then( () => history.push(''))
+        } else if (previousScore) {
+            return history.push('')
+        } else {
+            const gameResult = {
+                user: name,
+                score: score
+            }
+    
+            axios.post('https://rick-and-morty-quiz-c69bc.firebaseio.com/records.json', gameResult)
+                .then( () => history.push(''))
         }
-        axios.post('https://rick-and-morty-quiz-c69bc.firebaseio.com/records.json', gameResult)
-            .then( () => history.push(''))
     }
-
 
     return (
         <Switch>
@@ -152,8 +178,8 @@ const Game = () => {
             }/>
             <Route path={ `${match.path}/resume` } render={
                 () => <Resume 
-                        send = { sendGameResult }
-                        record = { record }
+                        send = { finishGame }
+                        record = { records[0].score }
                         score = { score }
                 />
             }
