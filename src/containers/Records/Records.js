@@ -3,11 +3,14 @@ import axios from 'axios'
 
 import './Records.scss'
 import Button from '../../shared/Button/Button'
+import Spinner from '../../shared/Spinner/Spinner'
 import { Link } from 'react-router-dom'
 
 const Records = () => {
 
     const [ bestScores, setBestScores ] = useState([])
+    const [ isLoaded, setIsLoaded ] = useState(false)
+    const [ spinnerLag, setSpinnerLag ] = useState(false)
 
     useEffect( () => {
         axios.get('https://rick-and-morty-quiz-c69bc.firebaseio.com/records.json?orderBy="score"&limitToLast=10')
@@ -22,9 +25,11 @@ const Records = () => {
                     if ( a.score < b.score ) return 1
                     return 0
                 })
+                setIsLoaded(true)
                 setBestScores(scores)
             })
-    }, [])  
+        setTimeout(() => setSpinnerLag(true), 1000)
+        }, [])  
     
     const display = bestScores ?
         <div className="records">
@@ -38,7 +43,7 @@ const Records = () => {
     
     return(
         <Fragment>
-            {display}
+            {(isLoaded && spinnerLag) ? display : <Spinner />}
         </Fragment>
     )
 }
