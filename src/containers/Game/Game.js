@@ -15,6 +15,7 @@ const Game = () => {
     const [ rounds, setRounds ] = useState(10)
     const [ errorSetting, setErrorSetting ] = useState(false)
     const [ loading, setLoading ] = useState(true)
+    const [ totalCharacters, setTotalCharacters ] = useState(0)
     const [ characters, setCharacters ] = useState([])
     const [ currentRound, setCurrentRound] = useState(0)
     const [ score, setScore ] = useState(0)
@@ -31,6 +32,11 @@ const Game = () => {
     /**
      * Settings
      */
+    useEffect( () => {
+        axios.get('https://rickandmortyapi.com/api/character')
+            .then(resp => setTotalCharacters(resp.data.info.count))
+    }, [])
+
     const changeNameHandler = (name) => {
         setName(name)
     }
@@ -77,7 +83,6 @@ const Game = () => {
     // Ensure there are only status 'Alive' or 'Dead'
     const requestCharacters = () => {
         const remainCharacter = rounds - characters.length
-        const totalCharacters = 591
         const randomNumbers = Array.from({length: remainCharacter}, () => Math.floor(Math.random() * totalCharacters))
         axios.get(`https://rickandmortyapi.com/api/character/${randomNumbers.join(',')}`)
             .then(resp => {
