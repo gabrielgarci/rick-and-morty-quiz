@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/rick-and-morty-quiz/static/css/main.7a8978fb.chunk.css",
-    "main.js": "/rick-and-morty-quiz/static/js/main.4f3fcfe5.chunk.js",
-    "main.js.map": "/rick-and-morty-quiz/static/js/main.4f3fcfe5.chunk.js.map",
+    "main.js": "/rick-and-morty-quiz/static/js/main.c8f84162.chunk.js",
+    "main.js.map": "/rick-and-morty-quiz/static/js/main.c8f84162.chunk.js.map",
     "runtime-main.js": "/rick-and-morty-quiz/static/js/runtime-main.c43ec2ea.js",
     "runtime-main.js.map": "/rick-and-morty-quiz/static/js/runtime-main.c43ec2ea.js.map",
-    "static/js/2.154a6fd5.chunk.js": "/rick-and-morty-quiz/static/js/2.154a6fd5.chunk.js",
-    "static/js/2.154a6fd5.chunk.js.map": "/rick-and-morty-quiz/static/js/2.154a6fd5.chunk.js.map",
+    "static/js/2.b5cb5be6.chunk.js": "/rick-and-morty-quiz/static/js/2.b5cb5be6.chunk.js",
+    "static/js/2.b5cb5be6.chunk.js.map": "/rick-and-morty-quiz/static/js/2.b5cb5be6.chunk.js.map",
     "index.html": "/rick-and-morty-quiz/index.html",
-    "precache-manifest.1167055fb040ffd27848c8d425ce4dd3.js": "/rick-and-morty-quiz/precache-manifest.1167055fb040ffd27848c8d425ce4dd3.js",
+    "precache-manifest.18b2b2f242859b66487abb3432a7203e.js": "/rick-and-morty-quiz/precache-manifest.18b2b2f242859b66487abb3432a7203e.js",
     "service-worker.js": "/rick-and-morty-quiz/service-worker.js",
     "static/css/main.7a8978fb.chunk.css.map": "/rick-and-morty-quiz/static/css/main.7a8978fb.chunk.css.map",
-    "static/js/2.154a6fd5.chunk.js.LICENSE.txt": "/rick-and-morty-quiz/static/js/2.154a6fd5.chunk.js.LICENSE.txt",
+    "static/js/2.b5cb5be6.chunk.js.LICENSE.txt": "/rick-and-morty-quiz/static/js/2.b5cb5be6.chunk.js.LICENSE.txt",
     "static/media/arrow.svg": "/rick-and-morty-quiz/static/media/arrow.d6d0b489.svg",
     "static/media/finish.png": "/rick-and-morty-quiz/static/media/finish.82d32ff6.png",
     "static/media/fire.png": "/rick-and-morty-quiz/static/media/fire.15fc282e.png",
@@ -22,8 +22,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.c43ec2ea.js",
-    "static/js/2.154a6fd5.chunk.js",
+    "static/js/2.b5cb5be6.chunk.js",
     "static/css/main.7a8978fb.chunk.css",
-    "static/js/main.4f3fcfe5.chunk.js"
+    "static/js/main.c8f84162.chunk.js"
   ]
 }

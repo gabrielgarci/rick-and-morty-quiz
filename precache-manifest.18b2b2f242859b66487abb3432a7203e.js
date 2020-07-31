@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "46cfb8b500b348cdca4a2ffa6c1b467a",
+    "revision": "f8439f3796474eb58639ec79dac99972",
     "url": "/rick-and-morty-quiz/index.html"
   },
   {
-    "revision": "d0055eb83cb952d2bed4",
+    "revision": "58a637c535f1f446ec68",
     "url": "/rick-and-morty-quiz/static/css/main.7a8978fb.chunk.css"
   },
   {
-    "revision": "9ba28de0bc50f96c938e",
-    "url": "/rick-and-morty-quiz/static/js/2.154a6fd5.chunk.js"
+    "revision": "2dc810da54a302cc321b",
+    "url": "/rick-and-morty-quiz/static/js/2.b5cb5be6.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/rick-and-morty-quiz/static/js/2.154a6fd5.chunk.js.LICENSE.txt"
+    "url": "/rick-and-morty-quiz/static/js/2.b5cb5be6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d0055eb83cb952d2bed4",
-    "url": "/rick-and-morty-quiz/static/js/main.4f3fcfe5.chunk.js"
+    "revision": "58a637c535f1f446ec68",
+    "url": "/rick-and-morty-quiz/static/js/main.c8f84162.chunk.js"
   },
   {
     "revision": "e0dad865865581857247",
