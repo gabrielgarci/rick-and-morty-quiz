@@ -10,7 +10,7 @@ describe('HomePage', () => {
 
     beforeEach(() => {
         render(
-            <MemoryRouter initialEntries={["/"]}>
+            <MemoryRouter>
                 <App />
             </MemoryRouter>
         )
@@ -33,9 +33,5 @@ describe('HomePage', () => {
         const decreaseBtn = screen.getByRole('img', {name: /decrease quantity/i})
         expect(decreaseBtn).toBeInTheDocument()
     })
-    
-})
-
-describe('tttt', () => {
     
 })
