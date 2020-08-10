@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100% - 35px);
+    height: 100%;
     width: 100%;
     transform: scale(0);
     animation: 0.7s forwards show-error;
@@ -26,20 +26,18 @@
         text-align: center;
     }
 
-    &_btn {
-        position: absolute;
-        bottom: 0;
-        opacity: 0;
-        animation: 0s forwards error-btn 0.6s;
-    }
+}
+
+.menu-btn {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-decoration: none;
 }
 
 @keyframes show-error {
     from {transform: scale(0);}
     to {transform: scale(1);}
-}
-
-@keyframes error-btn{
-    from {opacity: 0;}
-    to {opacity: 1;}
 }

@@ -6,6 +6,8 @@ import recordPic from '../../../../assets/images/record.png'
 import resumePic from '../../../../assets/images/finish.png'
 
 import Button from '../../../../shared/Button/Button'
+import Spinner from '../../../../shared/Spinner/Spinner'
+import ApiError from '../../../../shared/ApiError/ApiError'
 
 const Resume = props => {
 
@@ -21,15 +23,16 @@ const Resume = props => {
             <p>SCORE: {props.score}</p>
         </Fragment>
 
+    const display = props.apiError ? 
+        <ApiError /> :
+        <Fragment>
+            {resumeDisplay}
+            <Button text={"FINISH GAME"} clicked={props.send}/>
+        </Fragment> 
+
     return (
         <div className="resume">
-            {
-                typeof props.record !== 'undefined' ? 
-                <Fragment>
-                    {resumeDisplay}
-                    <Button text={"FINISH GAME"} clicked={props.send}/>
-                </Fragment> : null
-            }
+            {typeof props.record !== 'undefined' ? display : <Spinner />}
         </div>
     )
 }
@@ -38,6 +41,7 @@ Resume.propTypes = {
     score: PropTypes.number,
     record: PropTypes.number,
     send: PropTypes.func,
+    apiError: PropTypes.bool
 }
 
 export default Resume
