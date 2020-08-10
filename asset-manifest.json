@@ -1,29 +1,30 @@
 {
   "files": {
-    "main.css": "/rick-and-morty-quiz/static/css/main.7a8978fb.chunk.css",
-    "main.js": "/rick-and-morty-quiz/static/js/main.c8f84162.chunk.js",
-    "main.js.map": "/rick-and-morty-quiz/static/js/main.c8f84162.chunk.js.map",
+    "main.css": "/rick-and-morty-quiz/static/css/main.27929672.chunk.css",
+    "main.js": "/rick-and-morty-quiz/static/js/main.c8ccb8f7.chunk.js",
+    "main.js.map": "/rick-and-morty-quiz/static/js/main.c8ccb8f7.chunk.js.map",
     "runtime-main.js": "/rick-and-morty-quiz/static/js/runtime-main.c43ec2ea.js",
     "runtime-main.js.map": "/rick-and-morty-quiz/static/js/runtime-main.c43ec2ea.js.map",
-    "static/js/2.b5cb5be6.chunk.js": "/rick-and-morty-quiz/static/js/2.b5cb5be6.chunk.js",
-    "static/js/2.b5cb5be6.chunk.js.map": "/rick-and-morty-quiz/static/js/2.b5cb5be6.chunk.js.map",
+    "static/js/2.808d68fe.chunk.js": "/rick-and-morty-quiz/static/js/2.808d68fe.chunk.js",
+    "static/js/2.808d68fe.chunk.js.map": "/rick-and-morty-quiz/static/js/2.808d68fe.chunk.js.map",
     "index.html": "/rick-and-morty-quiz/index.html",
-    "precache-manifest.18b2b2f242859b66487abb3432a7203e.js": "/rick-and-morty-quiz/precache-manifest.18b2b2f242859b66487abb3432a7203e.js",
+    "precache-manifest.9922dd02d45619a397dbc138104cb4ee.js": "/rick-and-morty-quiz/precache-manifest.9922dd02d45619a397dbc138104cb4ee.js",
     "service-worker.js": "/rick-and-morty-quiz/service-worker.js",
-    "static/css/main.7a8978fb.chunk.css.map": "/rick-and-morty-quiz/static/css/main.7a8978fb.chunk.css.map",
-    "static/js/2.b5cb5be6.chunk.js.LICENSE.txt": "/rick-and-morty-quiz/static/js/2.b5cb5be6.chunk.js.LICENSE.txt",
+    "static/css/main.27929672.chunk.css.map": "/rick-and-morty-quiz/static/css/main.27929672.chunk.css.map",
+    "static/js/2.808d68fe.chunk.js.LICENSE.txt": "/rick-and-morty-quiz/static/js/2.808d68fe.chunk.js.LICENSE.txt",
     "static/media/arrow.svg": "/rick-and-morty-quiz/static/media/arrow.d6d0b489.svg",
     "static/media/finish.png": "/rick-and-morty-quiz/static/media/finish.82d32ff6.png",
     "static/media/fire.png": "/rick-and-morty-quiz/static/media/fire.15fc282e.png",
     "static/media/logo.png": "/rick-and-morty-quiz/static/media/logo.842f63c3.png",
     "static/media/morty-face.png": "/rick-and-morty-quiz/static/media/morty-face.617393a9.png",
     "static/media/record.png": "/rick-and-morty-quiz/static/media/record.bb65bdad.png",
+    "static/media/rick-face.png": "/rick-and-morty-quiz/static/media/rick-face.19af2235.png",
     "static/media/title.png": "/rick-and-morty-quiz/static/media/title.42d6efdb.png"
   },
   "entrypoints": [
     "static/js/runtime-main.c43ec2ea.js",
-    "static/js/2.b5cb5be6.chunk.js",
-    "static/css/main.7a8978fb.chunk.css",
-    "static/js/main.c8f84162.chunk.js"
+    "static/js/2.808d68fe.chunk.js",
+    "static/css/main.27929672.chunk.css",
+    "static/js/main.c8ccb8f7.chunk.js"
   ]
 }
