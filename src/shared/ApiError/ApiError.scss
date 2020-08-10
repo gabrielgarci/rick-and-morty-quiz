@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: calc(100% - 35px);
     width: 100%;
     transform: scale(0);
     animation: 0.7s forwards show-error;
@@ -25,9 +25,21 @@
         align-self: flex-start;
         text-align: center;
     }
+
+    &_btn {
+        position: absolute;
+        bottom: 0;
+        opacity: 0;
+        animation: 0s forwards error-btn 0.6s;
+    }
 }
 
 @keyframes show-error {
     from {transform: scale(0);}
     to {transform: scale(1);}
+}
+
+@keyframes error-btn{
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
