@@ -19,6 +19,11 @@ describe('HomePage', () => {
     afterEach(() => {
         window.location.href= 'http://localhost/'
     })
+    
+    it('should render <HomePage /> by default', () => {
+        const homePageImg = screen.getByRole('img', {name:/title/i})
+        expect(homePageImg).toBeInTheDocument()
+    })
 
     it('should redirect to records and show loading spinner if "RECORDS" button is pressed', () => {
         const link = screen.getByRole('link', {name: /records/i})
@@ -33,5 +38,4 @@ describe('HomePage', () => {
         const decreaseBtn = screen.getByRole('img', {name: /decrease quantity/i})
         expect(decreaseBtn).toBeInTheDocument()
     })
-    
 })
