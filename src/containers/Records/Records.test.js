@@ -1,7 +1,7 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import { render, screen } from '@testing-library/react'
-import { enableFetchMocks, setup } from 'jest-fetch-mock'
+import { enableFetchMocks } from 'jest-fetch-mock'
 
 import Records from './Records'
 
