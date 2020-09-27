@@ -25,7 +25,7 @@ const Settings = props => (
             <div className="field">
                 <p className="field__name" >ROUNDS</p>
                 <div className="field__count">
-                    <img className="arrow arrow--decrease" src={arrow} alt="decresae quantity" onClick={props.reduceQty}/>
+                    <img className="arrow arrow--decrease" src={arrow} alt="decrease quantity" onClick={props.reduceQty}/>
                     <p className="number">{props.rounds}</p>
                     <img className="arrow arrow--increase" src={arrow} alt="incresae quantity" onClick={props.addQty}/>
                 </div>
@@ -45,7 +45,7 @@ Settings.propTypes = {
     changeName: PropTypes.func,
     addQty: PropTypes.func,
     reduceQty: PropTypes.func,
-    accept: PropTypes.func,
+    action: PropTypes.func,
 }
 
 export default Settings

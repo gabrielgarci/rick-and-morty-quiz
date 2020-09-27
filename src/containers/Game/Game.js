@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom'
-import axios from 'axios'
 
 import Settings from './components/Settings/Settings'
 import Play from './components/Play/Play'
@@ -15,6 +14,7 @@ const Game = () => {
     const [ rounds, setRounds ] = useState(10)
     const [ errorSetting, setErrorSetting ] = useState(false)
     const [ loading, setLoading ] = useState(true)
+    const [ apiError, setApiError ] = useState(false)
     const [ totalCharacters, setTotalCharacters ] = useState(0)
     const [ characters, setCharacters ] = useState([])
     const [ currentRound, setCurrentRound] = useState(0)
@@ -33,8 +33,20 @@ const Game = () => {
      * Settings
      */
     useEffect( () => {
-        axios.get('https://rickandmortyapi.com/api/character')
-            .then(resp => setTotalCharacters(resp.data.info.count))
+        const characterNumUrl = 'https://rickandmortyapi.com/api/character'
+        fetch(characterNumUrl).then(resp => {
+            if (resp.ok) {
+                resp.json().then(data => setTotalCharacters(data.info.count))
+            } else {
+                setLoading(false)
+                setApiError(true)
+            }
+        })
+        .catch( err => {
+            console.error(err.message)
+            setLoading(false)
+            setApiError(true)
+        })
     }, [])
 
     const changeNameHandler = (name) => {
@@ -84,15 +96,26 @@ const Game = () => {
     const requestCharacters = () => {
         const remainCharacter = rounds - characters.length
         const randomNumbers = Array.from({length: remainCharacter}, () => Math.floor(Math.random() * totalCharacters))
-        axios.get(`https://rickandmortyapi.com/api/character/${randomNumbers.join(',')}`)
-            .then(resp => {
-                if (randomNumbers.length > 1) {
-                    const validCharacters = resp.data.filter(character => character.status === 'Alive' || character.status === 'Dead')
-                    validCharacters ? setCharacters(prevState => [...prevState , ...validCharacters]) : requestCharacters()
-                } else {
-                    (resp.data.status === 'Alive' || resp.data.status === 'Dead') ? setCharacters(prevState => [...prevState, resp.data]) : requestCharacters()
-                }
-            })
+        const getCharactersUrl = `https://rickandmortyapi.com/api/character/${randomNumbers.join(',')}`
+        fetch(getCharactersUrl).then( resp => {
+            if (resp.ok) {
+                resp.json().then(data => {
+                    if (randomNumbers.length > 1) {
+                        const validCharacters = data.filter(character => character.status === 'Alive' || character.status === 'Dead')
+                        validCharacters ? setCharacters(prevState => [...prevState , ...validCharacters]) : requestCharacters()
+                    } else {
+                        (data.status === 'Alive' || data.status === 'Dead') ? setCharacters(prevState => [...prevState, data]) : requestCharacters()
+                    }
+                })
+            } else {
+                setLoading(false)
+                setApiError(true)
+            }
+        }).catch( err => {
+            console.error(err.message)
+            setLoading(false)
+            setApiError(true)
+        })
     }
 
     const answer = resp => {
@@ -114,20 +137,29 @@ const Game = () => {
     useEffect(() => {
         if ( characters.length === rounds ) {
             // Get global record
-            axios.get('https://rick-and-morty-quiz-c69bc.firebaseio.com/records.json')
-                .then(resp => {
-                    const scores = Object.keys(resp.data).map( key => {
-                        const score = resp.data[key]
-                        score.id = key
-                        return score
-                    } )
-                    scores.sort( (a, b) =>{
-                        if ( a.score > b.score ) return -1
-                        if ( a.score < b.score ) return 1
-                        return 0
+            const recordsUrl = 'https://rick-and-morty-quiz-c69bc.firebaseio.com/records.json'
+            fetch(recordsUrl).then(resp => {
+                if (resp.ok) {
+                    resp.json().then(data => {
+                        const scores = Object.keys(data).map( key => {
+                            const score = data[key]
+                            score.id = key
+                            return score
+                        } )
+                        scores.sort( (a, b) =>{
+                            if ( a.score > b.score ) return -1
+                            if ( a.score < b.score ) return 1
+                            return 0
+                        })
+                        setRecords(scores)
                     })
-                    setRecords(scores)
-                })
+                } else {
+                    setApiError(true)
+                }
+            }).catch(err => {
+                console.error(err.message)
+                setApiError(true)
+            })
         }
     }, [characters])
 
@@ -135,24 +167,29 @@ const Game = () => {
 
         const previousScore = records.find(record => record.user === name)
 
-        if (previousScore && score > previousScore.score) {
-            previousScore.score = score
+        const sendNewScore = (user, newPlayer = true) => {
+            const url = `https://rick-and-morty-quiz-c69bc.firebaseio.com/records${newPlayer ? '' : ('/'+previousScore.id) }.json`
             const gameResult = {
-                user: previousScore.user,
+                user: user,
                 score: score
             }
-            axios.put(`https://rick-and-morty-quiz-c69bc.firebaseio.com/records/${previousScore.id}.json`, gameResult)
-                .then( () => history.push(''))
-        } else if (previousScore) {
+            fetch(url, {
+                method: newPlayer ? 'POST' : 'PUT',
+                body: JSON.stringify(gameResult),
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            }).then(resp => resp.json())
+            .then(() => history.push(''))
+            .catch(() => setApiError(true))
+        }   
+
+        if (typeof previousScore !== 'undefined' && score > previousScore.score) {
+            sendNewScore(previousScore.user, false)
+        } else if (typeof previousScore !== 'undefined') {
             return history.push('')
         } else {
-            const gameResult = {
-                user: name,
-                score: score
-            }
-    
-            axios.post('https://rick-and-morty-quiz-c69bc.firebaseio.com/records.json', gameResult)
-                .then( () => history.push(''))
+            sendNewScore(name)
         }
     }
 
@@ -172,6 +209,7 @@ const Game = () => {
             <Route path={ `${match.path}/play` } render={
                 () => <Play
                         loading = { loading }
+                        apiError = { apiError }
                         character = { characters[currentRound] }
                         round = { [ currentRound + 1 , rounds ].join(' / ')}
                         score = { score }
@@ -186,6 +224,7 @@ const Game = () => {
                         send = { finishGame }
                         record = { records[0].score }
                         score = { score }
+                        apiError = { apiError }
                 />
             }
             />
